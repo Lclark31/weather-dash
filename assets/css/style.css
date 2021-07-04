@@ -1,0 +1,125 @@
+* {
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+.container {
+  padding-top: 20px;
+  max-width: 95%;
+  height: 100vh;
+  max-height: 100%;
+}
+
+header {
+  text-align: center;
+  font-size: 35px;
+  background-image: linear-gradient(to right, #3b6cc1, #250758);
+  color: white;
+  font-weight: bolder;
+}
+
+.search-header {
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.search-bar {
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.search-button {
+  background-color: #5aa2e9;
+  color: white;
+}
+
+.search-button:hover {
+  color: #5aa2e9;
+  background-color: white;
+  border: 1px solid #5aa2e9;
+  border-radius: 5px;
+  transition: 300ms;
+}
+
+.search-button:active {
+  transition: 0ms;
+  color: white;
+  background-color: #5aa2e9;
+}
+
+button:hover {
+  outline: auto;
+}
+
+button:focus {
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  margin: 8px 0;
+  background-color: #b8b4b4;
+}
+
+.seperator {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+.weather-box {
+  border: 1px solid black;
+  height: 40vh;
+}
+
+.city,
+.span {
+  font-size: 35px;
+  margin: 10px 5px;
+  font-weight: bold;
+}
+
+.condition {
+  margin: 10px 5px;
+}
+
+.fcast-header {
+  font-size: 25px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.forecast {
+  background-color: #38445c;
+  margin: 0 10px;
+  border: 1px solid black;
+  height: 33vh;
+  width: 100%;
+  color: white;
+}
+
+.forecast h1 {
+  font-size: inherit;
+  font-weight: bold;
+  margin: 0;
+}
+
+.forecast div {
+  font-size: 45px;
+}
+
+.forecast li {
+  list-style: none;
+  margin: 5px 0;
+}

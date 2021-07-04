@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboad</title>
+  </head>
+  <body>
+    <header>Weather Dashboad</header>
+    <main class="container">
+      <div class="row">
+        <ul class="nav flex-column col-3">
+          <li class="search-header">Search for a City:</li>
+          <li><input type="text" class="search-bar" placeholder="San Diego" /></li>
+          <button class="search-button">Search</button>
+          <div class="seperator"></div>
+          <button>Austin</button>
+          <button>Chicago</button>
+          <button>New York</button>
+          <button>Orlando</button>
+          <button>San Francisco</button>
+          <button>Seattle</button>
+          <button>Denver</button>
+        </ul>
+        <div class="col-9">
+          <div class="weather-box">
+            <h1 class="city">Atlanta (3/30/2021)☁</h1>
+            <ul class="day-conditions nav flex-column">
+              <li class="temp condition">Temp: 74.01°F</li>
+              <li class="wind condition">Wind: 6.67 MPH</li>
+              <li class="humidity condition">Humidity: 46%</li>
+              <li class="uv-index condition">UV Index:</li>
+            </ul>
+          </div>
+          <h1 class="fcast-header">5-Day Forecast:</h1>
+          <ul class="row justify-content-between p-0">
+            <div class="forecast col-2">
+              <h1>03/31/2021</h1>
+              <div>⛈</div>
+              <ul class="nav flex-column">
+                <li>Temp: 75°F</li>
+                <li>Wind: 55 MPH</li>
+                <li>Humidity: 66%</li>
+              </ul>
+            </div>
+            <div class="forecast col-2">
+              <h1>03/31/2021</h1>
+              <div>⛈</div>
+              <ul class="nav flex-column">
+                <li>Temp: 75°F</li>
+                <li>Wind: 55 MPH</li>
+                <li>Humidity: 66%</li>
+              </ul>
+            </div>
+            <div class="forecast col-2">
+              <h1>03/31/2021</h1>
+              <div>⛈</div>
+              <ul class="nav flex-column">
+                <li>Temp: 75°F</li>
+                <li>Wind: 55 MPH</li>
+                <li>Humidity: 66%</li>
+              </ul>
+            </div>
+            <div class="forecast col-2">
+              <h1>03/31/2021</h1>
+              <div>⛈</div>
+              <ul class="nav flex-column">
+                <li>Temp: 75°F</li>
+                <li>Wind: 55 MPH</li>
+                <li>Humidity: 66%</li>
+              </ul>
+            </div>
+            <div class="forecast col-2">
+              <h1>03/31/2021</h1>
+              <div>⛈</div>
+              <ul class="nav flex-column">
+                <li>Temp: 75°F</li>
+                <li>Wind: 55 MPH</li>
+                <li>Humidity: 66%</li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+  </body>
+</html>
