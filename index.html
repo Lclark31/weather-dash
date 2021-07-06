@@ -12,22 +12,31 @@
     <header>Weather Dashboad</header>
     <main class="container">
       <div class="row">
-        <ul class="nav flex-column col-3">
+        <ul class="nav flex-column col-lg-3 col-sm-12">
           <li class="search-header">Search for a City:</li>
-          <li><input type="text" class="search-bar" placeholder="San Diego" /></li>
-          <button class="search-button">Search</button>
-          <div class="seperator"></div>
-          <button>Austin</button>
-          <button>Chicago</button>
-          <button>New York</button>
-          <button>Orlando</button>
-          <button>San Francisco</button>
-          <button>Seattle</button>
-          <button>Denver</button>
+          <li>
+            <form class="city-search">
+              <input type="text" type="submit" class="search-bar" placeholder="San Diego" />
+            </form>
+          </li>
+          <button type="submit" class="search-button">Search</button>
+          <div class="quick-searches">
+            <div class="seperator"></div>
+            <button>Austin</button>
+            <button>Chicago</button>
+            <button>New York</button>
+            <button>Orlando</button>
+            <button>San Francisco</button>
+            <button>Seattle</button>
+            <button>Denver</button>
+          </div>
         </ul>
         <div class="col-9">
           <div class="weather-box">
-            <h1 class="city">Atlanta (3/30/2021)☁</h1>
+            <h1 class="city">
+              Atlanta (3/30/2021)
+              <img src="http://openweathermap.org/img/wn/04n@2x.png" alt="" />
+            </h1>
             <ul class="day-conditions nav flex-column">
               <li class="temp condition">Temp: 74.01°F</li>
               <li class="wind condition">Wind: 6.67 MPH</li>
@@ -37,45 +46,45 @@
           </div>
           <h1 class="fcast-header">5-Day Forecast:</h1>
           <ul class="row justify-content-between p-0">
-            <div class="forecast col-2">
+            <div class="forecast col-lg-2 col-sm-5">
               <h1>03/31/2021</h1>
-              <div>⛈</div>
+              <span class="weather-icon">⛈</span>
               <ul class="nav flex-column">
                 <li>Temp: 75°F</li>
                 <li>Wind: 55 MPH</li>
                 <li>Humidity: 66%</li>
               </ul>
             </div>
-            <div class="forecast col-2">
+            <div class="forecast col-lg-2 col-sm-5">
               <h1>03/31/2021</h1>
-              <div>⛈</div>
+              <span class="weather-icon">⛈</span>
               <ul class="nav flex-column">
                 <li>Temp: 75°F</li>
                 <li>Wind: 55 MPH</li>
                 <li>Humidity: 66%</li>
               </ul>
             </div>
-            <div class="forecast col-2">
+            <div class="forecast col-lg-2 col-sm-5">
               <h1>03/31/2021</h1>
-              <div>⛈</div>
+              <span class="weather-icon">⛈</span>
               <ul class="nav flex-column">
                 <li>Temp: 75°F</li>
                 <li>Wind: 55 MPH</li>
                 <li>Humidity: 66%</li>
               </ul>
             </div>
-            <div class="forecast col-2">
+            <div class="forecast col-lg-2 col-sm-5">
               <h1>03/31/2021</h1>
-              <div>⛈</div>
+              <span class="weather-icon">⛈</span>
               <ul class="nav flex-column">
                 <li>Temp: 75°F</li>
                 <li>Wind: 55 MPH</li>
                 <li>Humidity: 66%</li>
               </ul>
             </div>
-            <div class="forecast col-2">
+            <div class="forecast col-lg-2 col-sm-5">
               <h1>03/31/2021</h1>
-              <div>⛈</div>
+              <span class="weather-icon">⛈</span>
               <ul class="nav flex-column">
                 <li>Temp: 75°F</li>
                 <li>Wind: 55 MPH</li>
@@ -87,6 +96,7 @@
       </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="/assets/js/script.js"></script>
   </body>

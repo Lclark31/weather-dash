@@ -40,6 +40,10 @@ header {
 .search-button {
   background-color: #5aa2e9;
   color: white;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  height: 55px;
 }
 
 .search-button:hover {
@@ -48,6 +52,7 @@ header {
   border: 1px solid #5aa2e9;
   border-radius: 5px;
   transition: 300ms;
+  margin: 8px 0;
 }
 
 .search-button:active {
@@ -83,10 +88,14 @@ button {
   height: 40vh;
 }
 
+.weather-box .nav {
+  max-height: 30vh;
+}
+
 .city,
-.span {
-  font-size: 35px;
-  margin: 10px 5px;
+span {
+  font-size: 40px;
+  margin: 0 5px;
   font-weight: bold;
 }
 
@@ -122,4 +131,18 @@ button {
 .forecast li {
   list-style: none;
   margin: 5px 0;
+}
+
+@media only screen and (max-width: 990px) {
+  .quick-searches {
+    display: none;
+  }
+
+  .weather-box {
+    height: 70vh;
+  }
+
+  .forecast {
+    margin: 10px 0;
+  }
 }
