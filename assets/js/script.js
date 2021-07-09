@@ -11,9 +11,26 @@ function readSearch() {
   let geoFinderApi = `http://open.mapquestapi.com/geocoding/v1/address?key=M6cWf6SB2TBYZpZZyd6wL6kpI31d0emQ&location=${searchLocation}`;
 
   if (searchLocation === undefined || searchLocation === ``) {
-    return;
+    defaultLocation();
   } else {
     getGeoLocation();
+  }
+
+  function defaultLocation() {
+    fetch(geoFinderApi)
+      .then((response) => response.json())
+      .then((data) => {
+        latitude = 40.73061;
+        longitude = -73.935242;
+
+        localStorage.clear();
+        localStorage.setItem(`Longitude`, longitude);
+        localStorage.setItem(`Latitude`, latitude);
+
+        localStorage.setItem(`Location`, `New York`);
+
+        searchWeather();
+      });
   }
 
   function getGeoLocation() {
@@ -118,8 +135,9 @@ $(`.city-search`).on(`submit`, function (event) {
   $(`.search-bar`).val(``);
 });
 
+$(document).ready(() => {
+  readSearch();
+});
 // somehow use pre-set buttons to show weather of those locations
 // function buttonSearch() {}
 // $(`.location-button`).on(`click`, buttonSearch);
-console.log($(`.forecast-conditions`)[0].textContent);
-$(`.forecast-conditions`)[0].innerHTML = `<li>Temp: 69°F</li> <li>Wind: 45 MPH</li> <li>Humidity: 76%</li>`;
