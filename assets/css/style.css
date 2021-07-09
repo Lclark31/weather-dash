@@ -24,6 +24,7 @@ header {
   font-weight: bolder;
 }
 
+/* search */
 .search-header {
   font-size: 35px;
   font-weight: bolder;
@@ -83,6 +84,8 @@ button {
   margin-bottom: 20px;
   border-bottom: 2px solid black;
 }
+
+/* today's weather */
 .weather-box {
   border: 1px solid black;
   height: 40vh;
@@ -93,8 +96,8 @@ button {
 }
 
 .city,
-span {
-  font-size: 40px;
+.weather-icon {
+  font-size: 30px;
   margin: 0 5px;
   font-weight: bold;
 }
@@ -103,6 +106,13 @@ span {
   margin: 10px 5px;
 }
 
+.uv-color {
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+/* daily forecasts */
+
 .fcast-header {
   font-size: 25px;
   margin-top: 15px;
@@ -110,10 +120,11 @@ span {
 }
 
 .forecast {
-  background-color: #38445c;
+  background-color: #6d81a8;
   margin: 0 10px;
   border: 1px solid black;
-  height: 33vh;
+  height: inherit;
+  min-height: 33vh;
   width: 100%;
   color: white;
 }
@@ -133,16 +144,34 @@ span {
   margin: 5px 0;
 }
 
-@media only screen and (max-width: 990px) {
-  .quick-searches {
-    display: none;
-  }
+/* uv index indicator */
+.low {
+  background-color: green;
+  color: white;
+}
 
+.moderate {
+  background-color: orange;
+  color: white;
+}
+
+.high {
+  background-color: red;
+  color: white;
+}
+
+@media only screen and (max-width: 1100px) {
   .weather-box {
-    height: 70vh;
+    height: 50vh;
   }
 
   .forecast {
     margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .quick-searches {
+    display: none;
   }
 }
