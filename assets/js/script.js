@@ -56,7 +56,7 @@ function readSearch() {
   }
 
   function searchWeather() {
-    weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
+    weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
     fetch(weatherApiUrl)
       .then((response) => response.json())
       .then((data) => {
