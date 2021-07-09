@@ -121,7 +121,7 @@ function readSearch() {
           let forecastWindSpeed = data.daily[i].wind_speed;
           let forecastHumidity = data.daily[i].humidity;
           let forecastCondtions = $(`.forecast-conditions`)[i];
-          forecastCondtions.innerHTML = `<li>Temp: ${forecastTemp}°F</li> <li>Wind: ${forecastWindSpeed} MPH</li> <li>Humidity: ${forecastHumidity}</li>%`;
+          forecastCondtions.innerHTML = `<li>Temp: ${forecastTemp}°F</li> <li>Wind: ${forecastWindSpeed} MPH</li> <li>Humidity: ${forecastHumidity}%</li>`;
         }
       });
   }
