@@ -45,7 +45,7 @@ function readSearch() {
         localStorage.setItem(`Latitude`, latitude);
         verifiedLocation = data.results[0].locations[0].adminArea5;
         if (verifiedLocation === ``) {
-          alert(`Coulnd't find your city`);
+          alert(`Couldn't find your city`);
           return;
         } else {
           localStorage.setItem(`Location`, verifiedLocation);
@@ -125,6 +125,33 @@ function readSearch() {
         }
       });
   }
+
+  $(`.location-button`).on(`click`, buttonSearch);
+
+  function buttonSearch() {
+    searchLocation = event.target.textContent;
+    geoFinderApi = `http://open.mapquestapi.com/geocoding/v1/address?key=M6cWf6SB2TBYZpZZyd6wL6kpI31d0emQ&location=${searchLocation}`;
+
+    fetch(geoFinderApi)
+      .then((response) => response.json())
+      .then((data) => {
+        latitude = data.results[0].locations[0].latLng.lat;
+        longitude = data.results[0].locations[0].latLng.lng;
+
+        localStorage.clear();
+        localStorage.setItem(`Longitude`, longitude);
+        localStorage.setItem(`Latitude`, latitude);
+        verifiedLocation = data.results[0].locations[0].adminArea5;
+        if (verifiedLocation === ``) {
+          alert(`Couldn't find your city`);
+          return;
+        } else {
+          localStorage.setItem(`Location`, verifiedLocation);
+        }
+
+        searchWeather();
+      });
+  }
 }
 
 $(`.search-button`).on(`click`, readSearch);
@@ -138,6 +165,3 @@ $(`.city-search`).on(`submit`, function (event) {
 $(document).ready(() => {
   readSearch();
 });
-// somehow use pre-set buttons to show weather of those locations
-// function buttonSearch() {}
-// $(`.location-button`).on(`click`, buttonSearch);
