@@ -1,5 +1,7 @@
+// CHECK WEATHER FEATURES WITHOUT CLEARING LOCALSTORAGE
+
 let buttonArray = [`Austin`, `Chicago`, `New York City`, `Orlando`, `San Francisco`, `Seattle`, `Denver`];
-let history = localStorage.setItem(`History`, JSON.stringify(buttonArray));
+let history; // = localStorage.setItem(`History`, JSON.stringify(buttonArray));
 
 function readSearch() {
   let searchLocation = $(`input`).val();
@@ -12,6 +14,7 @@ function readSearch() {
   let weatherApiUrl;
   let iconImage;
   let geoFinderApi = `http://open.mapquestapi.com/geocoding/v1/address?key=M6cWf6SB2TBYZpZZyd6wL6kpI31d0emQ&location=${searchLocation}`;
+  updateButtons();
 
   if (searchLocation === undefined || searchLocation === ``) {
     defaultLocation();
@@ -26,7 +29,7 @@ function readSearch() {
         latitude = 40.73061;
         longitude = -73.935242;
 
-        localStorage.clear();
+        // localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
 
@@ -43,7 +46,7 @@ function readSearch() {
         latitude = data.results[0].locations[0].latLng.lat;
         longitude = data.results[0].locations[0].latLng.lng;
 
-        localStorage.clear();
+        // localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
         verifiedLocation = data.results[0].locations[0].adminArea5;
@@ -52,17 +55,17 @@ function readSearch() {
           return;
         } else {
           localStorage.setItem(`Location`, verifiedLocation);
+          buttonArray = JSON.parse(localStorage.getItem(`History`));
 
-          console.log(buttonArray.slice(0, 7));
           if (buttonArray.slice(0, 7).includes(verifiedLocation)) {
-            console.log(`hey`);
-
-            searchWeather();
+            // searchWeather();
+            console.log(`already in`);
           } else {
             buttonArray.unshift(verifiedLocation);
+
             localStorage.setItem(`History`, JSON.stringify(buttonArray));
             updateButtons();
-            searchWeather();
+            // searchWeather();
           }
         }
       });
@@ -70,33 +73,32 @@ function readSearch() {
 
   function updateButtons() {
     history = JSON.parse(localStorage.getItem(`History`));
-
     for (i = 0; i < 7; i++) {
       $(`.location-button`)[i].textContent = history[i];
     }
   }
 
-  function searchWeather() {
-    weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
-    fetch(weatherApiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data === undefined) {
-          alert(`Couldn't find that city`);
-          return;
-        } else {
-          weatherArray.push(`${data.current.temp}°F`);
-          weatherArray.push(`${data.current.wind_speed} MPH`);
-          weatherArray.push(`${data.current.humidity}%`);
-          weatherArray.push(data.current.uvi);
-          weatherArray.push(data.current.weather[0].icon);
+  // function searchWeather() {
+  //   weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
+  //   fetch(weatherApiUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data === undefined) {
+  //         alert(`Couldn't find that city`);
+  //         return;
+  //       } else {
+  //         weatherArray.push(`${data.current.temp}°F`);
+  //         weatherArray.push(`${data.current.wind_speed} MPH`);
+  //         weatherArray.push(`${data.current.humidity}%`);
+  //         weatherArray.push(data.current.uvi);
+  //         weatherArray.push(data.current.weather[0].icon);
 
-          localStorage.setItem(`Weather`, JSON.stringify(weatherArray));
-        }
-        displayWeather();
-        fiveDayForecast();
-      });
-  }
+  //         localStorage.setItem(`Weather`, JSON.stringify(weatherArray));
+  //       }
+  //       displayWeather();
+  //       fiveDayForecast();
+  //     });
+  // }
 
   function displayWeather() {
     weatherArray = JSON.parse(localStorage.getItem(`Weather`));
