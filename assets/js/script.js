@@ -1,3 +1,6 @@
+let buttonArray = [`Austin`, `Chicago`, `New York City`, `Orlando`, `San Francisco`, `Seattle`, `Denver`];
+let history = localStorage.setItem(`History`, JSON.stringify(buttonArray));
+
 function readSearch() {
   let searchLocation = $(`input`).val();
   let latitude = localStorage.getItem(`Latitude`);
@@ -29,7 +32,7 @@ function readSearch() {
 
         localStorage.setItem(`Location`, `New York`);
 
-        searchWeather();
+        // searchWeather();
       });
   }
 
@@ -49,10 +52,28 @@ function readSearch() {
           return;
         } else {
           localStorage.setItem(`Location`, verifiedLocation);
-        }
 
-        searchWeather();
+          console.log(buttonArray.slice(0, 7));
+          if (buttonArray.slice(0, 7).includes(verifiedLocation)) {
+            console.log(`hey`);
+
+            searchWeather();
+          } else {
+            buttonArray.unshift(verifiedLocation);
+            localStorage.setItem(`History`, JSON.stringify(buttonArray));
+            updateButtons();
+            searchWeather();
+          }
+        }
       });
+  }
+
+  function updateButtons() {
+    history = JSON.parse(localStorage.getItem(`History`));
+
+    for (i = 0; i < 7; i++) {
+      $(`.location-button`)[i].textContent = history[i];
+    }
   }
 
   function searchWeather() {
