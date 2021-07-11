@@ -1,7 +1,7 @@
 // CHECK WEATHER FEATURES WITHOUT CLEARING LOCALSTORAGE
 
 let buttonArray = [`Austin`, `Chicago`, `New York City`, `Orlando`, `San Francisco`, `Seattle`, `Denver`];
-let history; // = localStorage.setItem(`History`, JSON.stringify(buttonArray));
+let history;
 
 function readSearch() {
   let searchLocation = $(`input`).val();
@@ -29,13 +29,12 @@ function readSearch() {
         latitude = 40.73061;
         longitude = -73.935242;
 
-        // localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
 
         localStorage.setItem(`Location`, `New York`);
 
-        // searchWeather();
+        searchWeather();
       });
   }
 
@@ -46,7 +45,6 @@ function readSearch() {
         latitude = data.results[0].locations[0].latLng.lat;
         longitude = data.results[0].locations[0].latLng.lng;
 
-        // localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
         verifiedLocation = data.results[0].locations[0].adminArea5;
@@ -58,14 +56,13 @@ function readSearch() {
           buttonArray = JSON.parse(localStorage.getItem(`History`));
 
           if (buttonArray.slice(0, 7).includes(verifiedLocation)) {
-            // searchWeather();
-            console.log(`already in`);
+            searchWeather();
           } else {
             buttonArray.unshift(verifiedLocation);
 
             localStorage.setItem(`History`, JSON.stringify(buttonArray));
             updateButtons();
-            // searchWeather();
+            searchWeather();
           }
         }
       });
@@ -78,27 +75,27 @@ function readSearch() {
     }
   }
 
-  // function searchWeather() {
-  //   weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
-  //   fetch(weatherApiUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data === undefined) {
-  //         alert(`Couldn't find that city`);
-  //         return;
-  //       } else {
-  //         weatherArray.push(`${data.current.temp}°F`);
-  //         weatherArray.push(`${data.current.wind_speed} MPH`);
-  //         weatherArray.push(`${data.current.humidity}%`);
-  //         weatherArray.push(data.current.uvi);
-  //         weatherArray.push(data.current.weather[0].icon);
+  function searchWeather() {
+    weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
+    fetch(weatherApiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === undefined) {
+          alert(`Couldn't find that city`);
+          return;
+        } else {
+          weatherArray.push(`${data.current.temp}°F`);
+          weatherArray.push(`${data.current.wind_speed} MPH`);
+          weatherArray.push(`${data.current.humidity}%`);
+          weatherArray.push(data.current.uvi);
+          weatherArray.push(data.current.weather[0].icon);
 
-  //         localStorage.setItem(`Weather`, JSON.stringify(weatherArray));
-  //       }
-  //       displayWeather();
-  //       fiveDayForecast();
-  //     });
-  // }
+          localStorage.setItem(`Weather`, JSON.stringify(weatherArray));
+        }
+        displayWeather();
+        fiveDayForecast();
+      });
+  }
 
   function displayWeather() {
     weatherArray = JSON.parse(localStorage.getItem(`Weather`));
@@ -117,10 +114,16 @@ function readSearch() {
     $(`.uv-color`).text(`${weatherArray[3]}`);
     if (uvi <= 2) {
       $(`.uv-color`).addClass(`low`);
+      $(`.uv-color`).removeClass(`moderate`);
+      $(`.uv-color`).removeClass(`high`);
     } else if (uvi >= 3 && uvi <= 5) {
       $(`.uv-color`).addClass(`moderate`);
+      $(`.uv-color`).removeClass(`low`);
+      $(`.uv-color`).removeClass(`high`);
     } else {
       $(`.uv-color`).addClass(`high`);
+      $(`.uv-color`).removeClass(`moderate`);
+      $(`.uv-color`).removeClass(`low`);
     }
   }
 
