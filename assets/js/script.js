@@ -2,7 +2,6 @@ let buttonArray = [`Austin`, `Chicago`, `New York City`, `Orlando`, `San Francis
 
 let history = JSON.parse(localStorage.getItem(`History`));
 if (history === null) {
-  console.log(`hey`);
   localStorage.setItem(`History`, JSON.stringify(buttonArray));
 }
 
@@ -42,8 +41,6 @@ function readSearch() {
   }
 
   function getGeoLocation() {
-    console.log(buttonArray);
-
     fetch(geoFinderApi)
       .then((response) => response.json())
       .then((data) => {
@@ -60,7 +57,6 @@ function readSearch() {
           localStorage.setItem(`Location`, verifiedLocation);
           buttonArray = JSON.parse(localStorage.getItem(`History`));
 
-          console.log(buttonArray);
           if (buttonArray.slice(0, 7).includes(verifiedLocation)) {
             searchWeather();
           } else {
