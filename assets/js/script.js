@@ -1,3 +1,10 @@
+let buttonArray = [`Austin`, `Chicago`, `New York City`, `Orlando`, `San Francisco`, `Seattle`, `Denver`];
+
+let history = JSON.parse(localStorage.getItem(`History`));
+if (history === null) {
+  localStorage.setItem(`History`, JSON.stringify(buttonArray));
+}
+
 function readSearch() {
   let searchLocation = $(`input`).val();
   let latitude = localStorage.getItem(`Latitude`);
@@ -8,7 +15,10 @@ function readSearch() {
   let weatherArray = [];
   let weatherApiUrl;
   let iconImage;
+
   let geoFinderApi = `https://open.mapquestapi.com/geocoding/v1/address?key=M6cWf6SB2TBYZpZZyd6wL6kpI31d0emQ&location=${searchLocation}`;
+  updateButtons();
+
 
   if (searchLocation === undefined || searchLocation === ``) {
     defaultLocation();
@@ -23,7 +33,6 @@ function readSearch() {
         latitude = 40.73061;
         longitude = -73.935242;
 
-        localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
 
@@ -40,7 +49,6 @@ function readSearch() {
         latitude = data.results[0].locations[0].latLng.lat;
         longitude = data.results[0].locations[0].latLng.lng;
 
-        localStorage.clear();
         localStorage.setItem(`Longitude`, longitude);
         localStorage.setItem(`Latitude`, latitude);
         verifiedLocation = data.results[0].locations[0].adminArea5;
@@ -49,14 +57,30 @@ function readSearch() {
           return;
         } else {
           localStorage.setItem(`Location`, verifiedLocation);
-        }
+          buttonArray = JSON.parse(localStorage.getItem(`History`));
 
-        searchWeather();
+          if (buttonArray.slice(0, 7).includes(verifiedLocation)) {
+            searchWeather();
+          } else {
+            buttonArray.unshift(verifiedLocation);
+
+            localStorage.setItem(`History`, JSON.stringify(buttonArray));
+            updateButtons();
+            searchWeather();
+          }
+        }
       });
   }
 
+  function updateButtons() {
+    history = JSON.parse(localStorage.getItem(`History`));
+    for (i = 0; i < 7; i++) {
+      $(`.location-button`)[i].textContent = history[i];
+    }
+  }
+
   function searchWeather() {
-    weatherApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
+    weatherApiUrl = `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&units=imperial&appid=05259468112d1e5fac09c5030fda1d57`;
     fetch(weatherApiUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -94,10 +118,16 @@ function readSearch() {
     $(`.uv-color`).text(`${weatherArray[3]}`);
     if (uvi <= 2) {
       $(`.uv-color`).addClass(`low`);
+      $(`.uv-color`).removeClass(`moderate`);
+      $(`.uv-color`).removeClass(`high`);
     } else if (uvi >= 3 && uvi <= 5) {
       $(`.uv-color`).addClass(`moderate`);
+      $(`.uv-color`).removeClass(`low`);
+      $(`.uv-color`).removeClass(`high`);
     } else {
       $(`.uv-color`).addClass(`high`);
+      $(`.uv-color`).removeClass(`moderate`);
+      $(`.uv-color`).removeClass(`low`);
     }
   }
 
