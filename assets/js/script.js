@@ -195,31 +195,3 @@ $(`.city-search`).on(`submit`, function (event) {
 $(document).ready(() => {
   readSearch();
 });
-
-// stuff
-function updateCurrencyModal() {
-  //   let currencyAmount = $(`#currency-amount`).val().trim().replace(/,/g, '');
-  //   let newCurrencyCode = $(`.select-dropdown`).val().slice(0, 3);
-  let currencyConverterApi = `https://ssl.geoplugin.net/json.gp?base_currency=EUR&k=054e2aef60a55089`;
-
-  fetch(currencyConverterApi)
-    .then((response) => response.json())
-    .then(function (data) {
-      console.log(data);
-      // let newCurrencyName = $(`.select-dropdown`).val().slice(3).replace(`(`, ``).replace(`)`, ``);
-
-      // if (newCurrencyName === `ose the currency` || $(`#currency-amount`).val() === ``) {
-      // return;
-      // } else {
-      //   $(`#currency-search-title`).text(newCurrencyName);
-
-      //   let userCurrency = data.geoplugin_currencyCode;
-      //   let convertedCurrency = data.geoplugin_currencyConverter;
-      //   let convertedTotal = (convertedCurrency * currencyAmount).toFixed(2);
-
-      //   $('#currency-modal-content').text(`${currencyAmount} ${newCurrencyCode}  is worth ${convertedTotal} ${userCurrency}.`);
-      // }
-    });
-}
-// $(`#currency-search-button`).on(`click`, updateCurrencyModal);
-updateCurrencyModal();
